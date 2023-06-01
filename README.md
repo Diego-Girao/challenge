@@ -1,5 +1,7 @@
 # 🍽️ WDT Mobile Challenge_React Native
 
+<img src="assets/restaurants_app.gif">
+
 ## Tasks 📋
 
 ### - **1. List restaurants** ✅
