@@ -98,6 +98,7 @@ export default function Restaurants({ navigation }) {
 					data={restaurants}
 					renderItem={renderRestaurantItem}
 					keyExtractor={(item) => item._id}
+					showsVerticalScrollIndicator={false}
 				/>
 			) : (
 				<View style={styles.emptyContainer}>
