@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar"
-import React, { useEffect, useState, useRef } from "react"
-import { SafeAreaView, View, Animated, TouchableOpacity } from "react-native"
+import React, { useEffect, useState } from "react"
+import { SafeAreaView, View, TouchableOpacity, FlatList } from "react-native"
 import { Appbar, Searchbar, Card, Paragraph, Divider } from "react-native-paper"
 import styles from "./style"
 
@@ -9,7 +9,6 @@ export default function Restaurants({ navigation }) {
 	const [searchQuery, setSearchQuery] = useState("")
 	const [initialRestaurants, setInitialRestaurants] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
-	const fadeAnim = useRef(new Animated.Value(0)).current
 
 	const apiUrl = "https://api.dev.wdtek.xyz/restaurants"
 
@@ -42,13 +41,33 @@ export default function Restaurants({ navigation }) {
 		}
 	}
 
-	useEffect(() => {
-		Animated.timing(fadeAnim, {
-			toValue: 1,
-			duration: 1000,
-			useNativeDriver: true,
-		}).start()
-	}, [fadeAnim])
+	const renderRestaurantItem = ({ item }) => (
+		<React.Fragment key={item._id}>
+			<TouchableOpacity
+				onPress={() =>
+					navigation.navigate("RestaurantDetails", { restaurant: item })
+				}
+			>
+				<Card style={styles.card}>
+					<Card.Content style={styles.cardContent}>
+						<View style={styles.cardImageContainer}>
+							<Card.Cover
+								source={
+									item.image && item.image.url ? { uri: item.image.url } : null
+								}
+								style={styles.cardCover}
+							/>
+						</View>
+						<View style={styles.textContainer}>
+							<Card.Title titleStyle={styles.cardTitle} title={item.name} />
+							<Paragraph style={styles.mealType}>{item.mealType}</Paragraph>
+						</View>
+					</Card.Content>
+				</Card>
+			</TouchableOpacity>
+			<Divider />
+		</React.Fragment>
+	)
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -63,58 +82,28 @@ export default function Restaurants({ navigation }) {
 				onChangeText={searchRestaurants}
 				onIconPress={() => searchRestaurants("")}
 			/>
-			<Animated.ScrollView
-				style={{ opacity: fadeAnim }}
-				contentContainerStyle={styles.scrollViewContent}
-			>
-				{isLoading ? (
-					<View style={styles.skeletonContainer}>
-						<View style={styles.skeletonCard} />
-						<Divider />
-						<View style={styles.skeletonCard} />
-						<Divider />
-						<View style={styles.skeletonCard} />
-						<Divider />
-						<View style={styles.skeletonCard} />
-						<Divider />
-					</View>
-				) : (
-					restaurants.map((restaurant, index) => (
-						<React.Fragment key={restaurant._id}>
-							<TouchableOpacity
-								onPress={() =>
-									navigation.navigate("RestaurantDetails", { restaurant })
-								}
-							>
-								<Card style={styles.card}>
-									<Card.Content style={styles.cardContent}>
-										<View style={styles.cardImageContainer}>
-											<Card.Cover
-												source={
-													restaurant.image && restaurant.image.url
-														? { uri: restaurant.image.url }
-														: null
-												}
-												style={styles.cardCover}
-											/>
-										</View>
-										<View style={styles.textContainer}>
-											<Card.Title
-												titleStyle={styles.cardTitle}
-												title={restaurant.name}
-											/>
-											<Paragraph style={styles.mealType}>
-												{restaurant.mealType}
-											</Paragraph>
-										</View>
-									</Card.Content>
-								</Card>
-							</TouchableOpacity>
-							{index !== restaurants.length - 1 && <Divider />}
-						</React.Fragment>
-					))
-				)}
-			</Animated.ScrollView>
+			{isLoading ? (
+				<View style={styles.skeletonContainer}>
+					<View style={styles.skeletonCard} />
+					<Divider />
+					<View style={styles.skeletonCard} />
+					<Divider />
+					<View style={styles.skeletonCard} />
+					<Divider />
+					<View style={styles.skeletonCard} />
+					<Divider />
+				</View>
+			) : restaurants.length > 0 ? (
+				<FlatList
+					data={restaurants}
+					renderItem={renderRestaurantItem}
+					keyExtractor={(item) => item._id}
+				/>
+			) : (
+				<View style={styles.emptyContainer}>
+					<Paragraph>No restaurants found.</Paragraph>
+				</View>
+			)}
 		</SafeAreaView>
 	)
 }
