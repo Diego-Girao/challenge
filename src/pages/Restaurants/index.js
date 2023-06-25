@@ -1,7 +1,18 @@
 import { StatusBar } from "expo-status-bar"
 import React, { useEffect, useState } from "react"
 import { SafeAreaView, View, TouchableOpacity, FlatList } from "react-native"
-import { Appbar, Searchbar, Card, Paragraph, Divider } from "react-native-paper"
+import {
+	Appbar,
+	Searchbar,
+	Card,
+	Paragraph,
+	Divider,
+	IconButton,
+} from "react-native-paper"
+
+import { useSelector, useDispatch } from "react-redux"
+import { addFavorite, removeFavorite } from "../../redux/favoriteSlice"
+
 import styles from "./style"
 
 export default function Restaurants({ navigation }) {
@@ -9,6 +20,21 @@ export default function Restaurants({ navigation }) {
 	const [searchQuery, setSearchQuery] = useState("")
 	const [initialRestaurants, setInitialRestaurants] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
+
+	const favorites = useSelector((state) => state.favorites)
+	const dispatch = useDispatch()
+
+	const isFavorite = (restaurant) => {
+		return favorites.some((fav) => fav._id === restaurant._id)
+	}
+
+	const toggleFavorite = (restaurant) => {
+		if (isFavorite(restaurant)) {
+			dispatch(removeFavorite({ restaurantId: restaurant._id }))
+		} else {
+			dispatch(addFavorite({ restaurant }))
+		}
+	}
 
 	const apiUrl = "https://api.dev.wdtek.xyz/restaurants"
 
@@ -62,6 +88,11 @@ export default function Restaurants({ navigation }) {
 							<Card.Title titleStyle={styles.cardTitle} title={item.name} />
 							<Paragraph style={styles.mealType}>{item.mealType}</Paragraph>
 						</View>
+						<IconButton
+							icon="heart"
+							iconColor={isFavorite(item) ? "#2563eb" : "#cbd5e1"}
+							onPress={() => toggleFavorite(item)}
+						/>
 					</Card.Content>
 				</Card>
 			</TouchableOpacity>

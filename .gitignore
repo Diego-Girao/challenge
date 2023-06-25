@@ -9,7 +9,6 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-commented-index.js
 
 # macOS
 .DS_Store
