@@ -1,7 +1,7 @@
 # 🍽️ WDT Mobile Challenge_React Native
 
 <div align='center'>
-<p><strong><mark>Latest version</strong></p>
+<p><strong><mark>Latest version</mark></strong></p>
 <video width='200' autoplay loop controls>
 <source src="assets/restaurants_app_updated.mp4" type='video/mp4'>
 </video>
