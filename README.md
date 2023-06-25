@@ -75,9 +75,9 @@ You are free to use any libraries that you feel needed to complete the following
 
 We would like you to add a "favorites" feature to the app. The requirements are:
 
-- [ ] A user can mark "star" restaurants as favorites both from the list and details page for all items.
-- [ ] The user is able to unfavorite restaurants from the list and from the details page.
-- [ ] The list is persisted after the app is closed (but everything is stored locally for now).
+- [x] *New* - A user can mark "star" restaurants as favorites both from the list and details page for all items.
+- [x] *New* - The user is able to unfavorite restaurants from the list and from the details page.
+- [x] *New* - The list is persisted after the app is closed (but everything is stored locally for now).
 
 ## Practicalities
 
