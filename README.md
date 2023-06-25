@@ -2,11 +2,12 @@
 
 <div align='center'>
 <p><strong><mark>Latest version</mark></strong></p>
-<video width='200' autoplay loop controls>
+<video width='200' controls>
 <source src="assets/restaurants_app_updated.mp4" type='video/mp4'>
 </video>
 <p><strong>First version</strong></p><img width='200' src="assets/restaurants_app.gif">
 </div>
+
 ## Tasks 📋
 
 ### - **1. List restaurants** ✅
