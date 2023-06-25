@@ -28,13 +28,13 @@
 - [x] When a user presses on a restaurant row, the app should open a new screen displaying the selected restaurant information: https://api.dev.wdtek.xyz/restaurants/{_id} (example \_id: `5ea88c9fce27ef5586174f57`)
 - [x] The details screen should present: restaurant's image, name, address, contacts and cuisines.
 
-### - **4. Favorite restaurants - Task Not Done** ⚠️🚫
+### - **4. Favorite restaurants - Task Not Done** ✔️
 
 _We would like you to add a "favorites" feature to the app. The requirements are:_
 
-- [ ] A user can mark "star" restaurants as favorites both from the list and details page for all items.
-- [ ] The user is able to unfavorite restaurants from the list and from the details page.
-- [ ] The list is persisted after the app is closed (but everything is stored locally for now).
+- [x] **New** - A user can mark "star" restaurants as favorites both from the list and details page for all items.
+- [x] **New** - The user is able to unfavorite restaurants from the list and from the details page.
+- [x] **New** - The list is persisted after the app is closed (but everything is stored locally for now).
 
 ## Libs Used 📚
 
