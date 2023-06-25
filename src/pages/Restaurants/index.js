@@ -11,7 +11,7 @@ import {
 } from "react-native-paper"
 
 import { useSelector, useDispatch } from "react-redux"
-import { addFavorite, removeFavorite } from "../../Redux/favoriteSlice"
+import { addFavorite, removeFavorite } from "../../redux/favoriteSlice"
 
 import styles from "./style"
 
