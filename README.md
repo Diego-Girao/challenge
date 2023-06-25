@@ -2,10 +2,9 @@
 
 <div align='center'>
 <p><strong><mark>Latest version</mark></strong></p>
-<video width='200' controls>
-<source src="assets/restaurants_app_updated.mp4" type='video/mp4'>
-</video>
+<img width='200' src="assets/restaurantapp_update.gif">
 <p><strong>First version</strong></p><img width='200' src="assets/restaurants_app.gif">
+
 </div>
 
 ## Tasks 📋
