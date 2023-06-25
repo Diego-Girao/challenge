@@ -1,7 +1,12 @@
 # 🍽️ WDT Mobile Challenge_React Native
 
-<img width='200' src="assets/restaurants_app.gif">
-
+<div align='center'>
+<p><strong><mark>Latest version</strong></p>
+<video width='200' autoplay loop controls>
+<source src="assets/restaurants_app_updated.mp4" type='video/mp4'>
+</video>
+<p><strong>First version</strong></p><img width='200' src="assets/restaurants_app.gif">
+</div>
 ## Tasks 📋
 
 ### - **1. List restaurants** ✅
